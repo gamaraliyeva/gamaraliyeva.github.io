@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        #game-container {
+            margin-top: 20px;
+        }
+
+        #guess-input {
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        #message {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <h1>Number Guessing Game</h1>
+        <p>I'm thinking of a number between 1 and 100.</p>
+        <input type="number" id="guess-input" min="1" max="100">
+        <button onclick="checkGuess()">Submit Guess</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        let secretNumber = Math.floor(Math.random() * 100) + 1;
+        let guessesRemaining = 7; // You can adjust this
+
+        function checkGuess() {
+            let guess = document.getElementById("guess-input").value;
+
+            if (isNaN(guess) || guess < 1 || guess > 100) {
+                document.getElementById("message").innerText = "Please enter a number between 1 and 100.";
+                return;
+            }
+
+            guessesRemaining--;
+
+            if (guess === secretNumber) {
+                document.getElementById("message").innerText = "Congratulations! You guessed the number in " + guessesRemaining + " tries!";
+                document.getElementById("guess-input").disabled = true; // Disable input after winning
+            } else if (guessesRemaining === 0) {
+                document.getElementById("message").innerText = "You ran out of guesses! The number was " + secretNumber;
+                document.getElementById("guess-input").disabled = true; // Disable input after losing
+            } else if (guess < secretNumber) {
+                document.getElementById("message").innerText = "Too low! Try again.";
+            } else {
+                document.getElementById("message").innerText = "Too high! Try again.";
+            }
+        }
+    </script>
+
+</body>
+</html>
