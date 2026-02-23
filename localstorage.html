@@ -1,0 +1,22 @@
+<html>    
+ <head>    
+  <title>Hello</title>
+ </head>
+ <body>
+   <input id="fidan" type="text" placeholder="write your name">
+   <input id="gamar" type="text" placeholder="write your age">
+   <button onclick="miraj()">Miraj</button>
+   <button onclick="raj()">Raj</button>
+  </body>
+  <script>
+    function miraj(){
+      a=document.getElementByid('gamar').value
+      localStorage.setItem('age',a)
+      b=document.getElementByid('fidan').value
+      localStorage.setItem('name',b)
+      alert("saved in database")
+    }
+    function raj(){
+      alert("huseyn")
+   </script>
+ </html>
